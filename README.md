@@ -27,12 +27,7 @@
 
    -Set up a PostgreSQL database on ElephantSQL.
    - ```bash
-     CREATE TABLE pdf_storage (
-    id SERIAL PRIMARY KEY,
-    filename TEXT,
-    pdf_data BYTEA,
-    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    uploaded_by TEXT);
+     CREATE TABLE pdf_storage (id SERIAL PRIMARY KEY, filename TEXT, pdf_data BYTEA, upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, uploaded_by TEXT);
 
       
    -Obtain your database credentials from ElephantSQL.
