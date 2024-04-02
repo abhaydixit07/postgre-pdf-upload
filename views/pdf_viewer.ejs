@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>PDF Viewer</title>
+</head>
+<body>
+  <input type="file" id="fileInput">
+  <button onclick="uploadPDF()">Upload PDF</button>
+  
+  <div id="pdfList"></div> <!-- Div to display list of PDFs -->
+
+  <script>
+    async function uploadPDF() {
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+      const formData = new FormData();
+      formData.append('pdf', file);
+      try {
+        const response = await fetch('/upload', {
+          method: 'POST',
+          body: formData
+        });
+        if (response.ok) {
+          alert('PDF uploaded successfully.');
+          fetchPDFList(); // Refresh PDF list after upload
+        } else {
+          throw new Error('Upload failed.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error uploading PDF.');
+      }
+    }
+
+    async function fetchPDFList() {
+      try {
+        const response = await fetch('/pdflist');
+        if (response.ok) {
+          const pdfList = await response.json();
+          const pdfListDiv = document.getElementById('pdfList');
+          pdfListDiv.innerHTML = ''; // Clear previous list
+          pdfList.forEach(filename => {
+            const button = document.createElement('button');
+            button.textContent = filename;
+            button.onclick = () => openPDF(filename);
+            pdfListDiv.appendChild(button);
+          });
+        } else {
+          throw new Error('Failed to fetch PDF list.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error fetching PDF list.');
+      }
+    }
+
+    async function openPDF(filename) {
+      try {
+        const response = await fetch(`/pdf/${filename}`);
+        if (response.ok) {
+          const pdfData = await response.blob();
+          const pdfURL = URL.createObjectURL(pdfData);
+          window.open(pdfURL, '_blank');
+        } else {
+          throw new Error('File not found.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('Error fetching PDF.');
+      }
+    }
+
+    // Fetch PDF list on page load
+    fetchPDFList();
+  </script>
+</body>
+</html>
