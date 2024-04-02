@@ -14,7 +14,7 @@
 1. **Clone the repository:**
 
    ```bash
-   git clone [https://github.com/yourusername/quickzen.git](https://github.com/abhaydixit07/postgre-pdf-upload.git)
+   git clone https://github.com/abhaydixit07/postgre-pdf-upload.git
 2. **Navigate to the project directory:**
 
    ```bash
