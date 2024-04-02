@@ -6,13 +6,22 @@
 - Node.js and npm installed on your machine.
 - PostgreSQL database (ElephantSQL) set up.
 - Sign up for an ElephantSQL account to obtain your database credentials.
+- ```bash
+  CREATE TABLE pdf_storage (
+    id SERIAL PRIMARY KEY,
+    filename TEXT,
+    pdf_data BYTEA,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    uploaded_by TEXT
+);
+
 
 ### Installation
 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/quickzen.git
+   git clone [https://github.com/yourusername/quickzen.git](https://github.com/abhaydixit07/postgre-pdf-upload.git)
 2. **Navigate to the project directory:**
 
    ```bash
