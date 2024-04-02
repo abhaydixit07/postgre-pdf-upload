@@ -35,6 +35,6 @@
 
 6. **Run the application:**
    ```bash
-   npm start
+   node index.js
 
 **The application will be accessible at http://localhost:3000 by default.**
