@@ -21,7 +21,7 @@
    cd postgre-pdf-upload
 3. **Install dependencies:**
    ```bash
-   npm install
+   npm i
 
 4. **Configure the database:**
 
